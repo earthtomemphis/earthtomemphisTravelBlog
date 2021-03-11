@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  {{post.title}}
+{% endblock title %}
+{% block content %}
+<br>
+<br>
+<br>
+    <div class="container" style="margin-top: 2rem; margin-bottom: 2rem;">
+        <h1>{{post.title}}</h1>
+        <small>
+          By: {{post.author.first_name}} 
+          {{post.author.last_name}}
+          {% if user.is_authenticated %}
+            <a href="{% url 'update-post' post.slug %}">(Update)</a>
+            <a href="{% url 'delete-post' post.slug %}">(delete)</a>
+          {% endif %}  
+        </small>
+        <br>
+        <small>Posted on: {{post.date_created}}</small>
+        <p>{{post.body|safe}}</p>
+        <br>
+        <a href="{% url 'index' %}" class="btn btn-secondary">Back</a>
+    </div>
+  
+{% endblock content %}

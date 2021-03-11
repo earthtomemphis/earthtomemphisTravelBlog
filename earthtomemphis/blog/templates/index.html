@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  earthtomemphis 
+{% endblock title %}
+{% block content %}
+<main>
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">      
+          <img src="{% static 'img/CityOfTravel.jpg' %}" class="d-block w-100"> 
+        </div>
+      </div>
+    </div>
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. --> 
+    <div class="container marketing"> 
+      <!-- Three columns of text below the carousel -->
+      <div class="row" style="margin: 1rem;">
+        {% for post in object_list %}
+          <div class="col-lg-4">
+            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+            
+              <h2>{{post.title}}</h2>
+              <p><a href="{% url 'category' post.category %}">{{post.category}}</a></p>
+              <small>By: 
+                {{post.author.first_name}}
+                {{post.author.last_name}}
+                {% if user.is_authenticated %}
+                  <a href="{% url 'update-post' post.slug %}">(Update)</a>
+                  <a href="{% url 'delete-post' post.slug %}">(delete)</a>
+                {% endif %}
+              
+              </small>
+              <br>
+              <br>
+              <p>{{post.body|slice:"200"|safe}}</p>
+              <p><a class="btn btn-primary" href="{% url 'article-detail' post.slug %}">Read More &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+        {% endfor %}
+      </div><!-- /.row -->
+  
+  
+      <!-- START THE FEATURETTES -->
+  
+      <hr class="featurette-divider">
+  
+      <div class="row featurette" style="margin: 1rem;">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Flying for Free with Miles</h2>
+          <p class="lead">Discover how you to can fly for pretty much free with earning points and miles! By maximizing credit card points and miles on your everyday spend you will never how to fly to earn points!</p>
+          <p><a class="btn btn-primary" href="#">Read More &raquo;</a></p>
+        </div>
+        <div class="col-md-5">
+          <img src="{% static 'img/AirportWalkWay.jpg' %}" alt="" class="d-block w-100"> 
+        </div>
+      </div>
+  
+      <hr class="featurette-divider">
+  
+      <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+          <h2 class="featurette-heading">What you don't know about Credit Cards...</h2>
+          <p class="lead">Credit card companies want you to go into debt because that is where they make all their money. But if you pay your bills on time and keep your balances low, then you can improve your credit score to be able to get the most elite cards out there...</p>
+          <p><a class="btn btn-primary" href="#">Read More &raquo;</a></p>
+        </div>
+        <div class="col-md-5 order-md-1">
+          <img src="{% static 'img/WorldMoney.jpg' %}" alt="" class="d-block w-100"> 
+        </div>
+      </div>
+  
+      <hr class="featurette-divider">
+  
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">How I became a Web Developer <span class="text-muted">to Travel the World</span></h2>
+          <p class="lead">I have been wanting to travel the world for the longest time. But there was one obstacle in the way, I hadn't found my online passion yet. That was until I fell back into computer programming.</p>
+          <p><a class="btn btn-primary" href="#">Read More &raquo;</a></p>
+        </div>
+        <div class="col-md-5">
+          <img src="{% static 'img/SignUpCode.jpg' %}" alt="" class="d-block w-100"> 
+        </div>
+      </div>
+      <hr class="featurette-divider">
+      <!-- /END THE FEATURETTES -->
+    </div><!-- /.container -->   
+{% endblock content %}

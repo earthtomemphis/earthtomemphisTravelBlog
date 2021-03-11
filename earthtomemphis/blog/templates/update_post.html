@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Update Blog Post
+{% endblock title %}
+{% block content %}
+<br>
+<br>
+<br>
+    <div class="container" style="margin-top: 2rem; margin-bottom: 2rem;">
+    {% if user.is_authenticated %}
+        <h1>Update Blog Post</h1>
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-primary">
+                    Update Post
+                </button>
+            </form>
+        </div>
+    {% endif %}      
+    </div> 
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  earthtomemphis 
+{% endblock title %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+{% if category_post %}
+  <h1>{{cats}}</h1>
+  <div class="container" style="margin-top: 2rem; margin-bottom: 2rem; flex-direction:row; display:flex;">
+    
+    {% for post in category_post %}
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        
+          <h2>{{post.title}}</h2>
+          <p>{{post.category}}</p>
+          <small>By: 
+            {{post.author.first_name}}
+            {{post.author.last_name}}
+            {% if user.is_authenticated %}
+              <a href="{% url 'update-post' post.slug %}">(Update)</a>
+              <a href="{% url 'delete-post' post.slug %}">(delete)</a>
+            {% endif %}
+          
+          </small>
+          <br>
+          <br>
+          <p>{{post.body|slice:"200"|safe}}</p>
+          <p><a class="btn btn-primary" href="{% url 'article-detail' post.slug %}">Read More &raquo;</a></p>
+      </div>
+  {% endfor %}
+{% else %}
+      <h2>Sorry this page does not exist...</h2>
+{% endif %}     
+    </div>
+{% endblock content %}

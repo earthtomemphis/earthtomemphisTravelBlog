@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Delete Blog Post
+{% endblock title %}
+{% block content %}
+<br>
+<br>
+<br>
+    <div class="container" style="margin-top: 2rem; margin-bottom: 2rem;">
+        {% if user.is_authenticated %}
+            <h1>Delete Blog Post</h1>
+            <p>Delete: {{post.title}}</p>
+            <div class="form-group">
+                <form method="POST">
+                    {% csrf_token %}
+                    <br>
+                    <strong>Are you sure?!!</strong>
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-primary">
+                        Delete Post
+                    </button>
+                </form>
+            </div>
+        {% endif %}       
+    </div>
+{% endblock content %}

@@ -1,0 +1,144 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="Hugo 0.80.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+    <title>
+      {% block title %}
+        earthtomemphis
+      {% endblock title %}
+    </title>
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #002952;
+            --secondary-color: skyblue;
+        }
+        body {
+            background-color: var(--secondary-color);
+            font-family: 'Roboto Mono', monospace;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2, h3, h4, h5, h6, nav {
+          font-family: 'Italianno', cursive;
+          font-size: 3rem;
+        }
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        .featurette {
+          padding: 1rem;
+        }
+        footer.container {
+          padding: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+            }
+        }
+    </style>
+
+    
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'carousel.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background: var(--primary-color);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'index' %}" style="color: greenyellow; font-size:3rem;">earthtomemphis</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"
+            style="color: greenyellow; font-size: 1.5rem;">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: greenyellow; font-size: 1.5rem;">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: greenyellow; font-size: 1.5rem;">Contact</a>
+          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'add-post' %}" style="color: greenyellow; font-size: 1.5rem;">Add Post</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'add-category' %}" style="color: greenyellow; font-size: 1.5rem;">Add Category</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}" style="color: greenyellow; font-size: 1.5rem;">logout</a>
+            </li>
+          {% else %}  
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}" style="color: greenyellow; font-size: 1.5rem;">Register</a>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}" style="color: greenyellow; font-size: 1.5rem;">login</a>
+          {% endif %}
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit" style="color: greenyellow;">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
+<main>
+    {% block content %}
+      
+    {% endblock content %}
+    <div class="container" 
+    style="background-color: var(--primary-color); padding: 2.5rem; color: greenyellow;">
+      <section id="newsletter" style="align-items: center; justify-content: center; justify-items: center; flex-direction: column;">
+        <h2>Sign up for my newsletter and never miss a travel story or tip again!!!</h2>
+        <form action="" method="post">
+          <input type="text" value="name" placeholder="First Name" class="form-control" style="margin: 1rem;">
+          <input type="email" value="email" name="email" placeholder="Email" class="form-control" style="margin: 1rem;">
+          <button type="submit" class="btn btn-success" style="float: right; ">Count Me In!!</button>
+        </form>
+      </section>
+    </div>
+    <!-- FOOTER -->
+    <footer class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <p>&copy; earthtomemphis 2021<br> Reachable at:  <br> 1550 Wewatta St. <br> Suite 2193 <br> Denver, CO 80202 <!-- <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p> -->
+      <form action="https://www.paypal.com/donate" method="post" target="_top">
+        <input type="hidden" name="hosted_button_id" value="MLUQ89KHTZ2LA" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+        </form>
+                
+      <p class="float-end"><a href="#">Back to top</a></p>
+    </footer>
+  </main>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+      
+  </body>
+</html>
