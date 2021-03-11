@@ -13,8 +13,10 @@
           By: {{post.author.first_name}} 
           {{post.author.last_name}}
           {% if user.is_authenticated %}
-            <a href="{% url 'update-post' post.slug %}">(Update)</a>
-            <a href="{% url 'delete-post' post.slug %}">(delete)</a>
+            {% if user.id == post.author.id %}
+              <a href="{% url 'update-post' post.slug %}">(Update)</a>
+              <a href="{% url 'delete-post' post.slug %}">(delete)</a>
+            {% endif %}
           {% endif %}  
         </small>
         <br>
