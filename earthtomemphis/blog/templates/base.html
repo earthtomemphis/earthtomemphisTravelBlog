@@ -78,6 +78,22 @@
             <a class="nav-link active" aria-current="page" href="#"
             style="color: greenyellow; font-size: 1.5rem;">Blog</a>
           </li>
+          {% if cat_menu %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: greenyellow; font-size: 1.5rem;">
+                Categories
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: var(--primary-color);">
+                {% for item in cat_menu %}
+                  <li><a class="dropdown-item" href="{% url 'category' item|slugify %}" style="color: greenyellow; font-size: 1.5rem;">{{item}}</a></li>
+                {% endfor %}    
+              </ul>
+            </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'category-list' %}" style="color: greenyellow; font-size: 1.5rem;">Categories</a>
+          </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="#" style="color: greenyellow; font-size: 1.5rem;">About</a>
           </li>
