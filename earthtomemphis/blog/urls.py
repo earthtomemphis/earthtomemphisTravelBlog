@@ -10,5 +10,5 @@ urlpatterns = [
          UpdatePostView.as_view(), name='update-post'),
     path('article/<slug:slug>/delete/',
          DeletePostView.as_view(), name='delete-post'),
-    path('category/<str:cats>', CategoryView, name='category'),
+    path('category/<str:cats>/', CategoryView, name='category'),
 ]
